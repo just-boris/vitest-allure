@@ -1,0 +1,29 @@
+{
+  "name": "vitest-allure",
+  "type": "module",
+  "version": "1.0.0",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prebuild": "rm -rf dist build",
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig.test.json",
+    "pretest": "npm run build",
+    "test": "vitest run test",
+    "posttest": "allure generate -o build/report build/results"
+  },
+  "exports": {
+    ".": "./dist/src/reporter.js",
+    "./test": "./dist/src/test.js"
+  },
+  "dependencies": {
+    "allure-js-commons": "^2.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.4",
+    "allure-commandline": "^2.25.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.3"
+  }
+}
